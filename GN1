@@ -1,0 +1,33 @@
+from tkinter import *
+import webbrowser
+
+# Create the root window
+root = Tk()
+
+# Set title
+root.title('INFODOM')
+
+# Create the entry widget
+entry = Entry(root, width=30)
+entry.pack()
+
+# Create the radio button
+var = IntVar()
+rad1 = Radiobutton(root, text='OpenAI Playground', variable=var, value=1)
+rad2 = Radiobutton(root, text='GoogleNews', variable=var, value=2)
+rad1.pack()
+rad2.pack()
+
+# Create the search button
+def search():
+    query = entry.get()
+    if var.get() == 1:
+        webbrowser.open('https://beta.openai.com/playground/?q=' + query)
+    else:
+        webbrowser.open('https://news.google.com/search?q=' + query)
+
+btn = Button(root, text='Search', command=search)
+btn.pack()
+
+# Run the main loop
+root.mainloop()
